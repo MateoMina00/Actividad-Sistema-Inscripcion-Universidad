@@ -10,18 +10,20 @@ namespace TP4
         {
             int registro;
             bool cicloRegistro = false;
+           
             do
             {
                 Console.Clear();
                 Console.WriteLine("Sistema de inscripción");
                 Console.WriteLine("Favor de ingresar su registro");
                 registro = Helper.ValidarNumero();
+                
                 if (!DatosAlumnos.validarAlumno(registro))//Si el registro del alumno no existe, preguntar que desea
                 {
-                    Console.WriteLine("Registro no encontrado. Presione 1 para intentar de nuevo. 9 para salir");
-                    int answer = Helper.ValidarNumero(); //Arreglar validaciones de opciones
-                    if (answer == 9) //rompo el ciclo porque quiere salir.
-                        cicloRegistro = true;
+                    Console.WriteLine("Registro no encontrado");
+                    
+                    int answer = Helper.ValidarNumero(); 
+                    
 
                 }
                 else
