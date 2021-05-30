@@ -38,7 +38,7 @@ namespace TP4
         {
             get { return horarioDeClase; }
         }
-
+        // gon
         public string Sede
         {
             get { return sede; }
