@@ -5,49 +5,67 @@ using System.IO;
 
 namespace TP4
 {
-    static class CursoMateria
+    class CursoMateria
     {
         //      0               1             2             3        4          5        6
         //Nro de Curso;Nro de Materia;Nombre de Materia;Docente;Dia y Horario;Sede; Correlativas(separadas por '-')         
-        const string rutaCursoMateria = @"C:\Users\mateo\source\repos\CAI\TP4\TP4\Materias.csv";
-        public static List<Curso> TotalCursos = new List<Curso>();
         
-        static CursoMateria()
-        {
-            //Formato
-            //Codigo|Nombre|tipo           
-            if (File.Exists(rutaCursoMateria))
-            {
-                using (StreamReader reader = new StreamReader(rutaCursoMateria))
-                {
-                    while (!reader.EndOfStream)
-                    {
-                        string linea = reader.ReadLine(); //A partir de cada linea, tengo que construir un diccionario, que me permita validar que existe.                                     
-                        Curso cursada = new Curso(linea);
-                        TotalCursos.Add(cursada);
-                    }
-                }
+        public static List<CursoMateria> TotalCursos;
 
-            }
-            else
-            {
-                Console.WriteLine("No se encontro la Oferta Academica");
-                Console.ReadKey();
-            }
+        int nroDeCurso;
+        int nroDeMateria;
+        string nombreDeCurso;
+        string docente;
+        string horarioDeClase;
+        string sede;
+        string correlativas;
+
+        public int NumerodeCurso
+        {
+            get { return this.nroDeCurso; }
+        }
+
+        public int NumeroDeMateria
+        {
+            get { return this.nroDeMateria; }
+        }
+
+        public string NombreDeCurso
+        {
+            get { return docente; }
+        }
+        public string HorarioDeClase
+        {
+            get { return horarioDeClase; }
+        }
+
+        public string Sede
+        {
+            get { return sede; }
+        }
+
+        public string Correlativas
+        {
+            get { return correlativas; }
+        }
+
+        public CursoMateria ( string linea)
+        {
+            TotalCursos = new List<CursoMateria>();
+            var arraydeLinea = linea.Split(';');
             
-
+            nroDeCurso = int.Parse(arraydeLinea[0]);
+            nroDeMateria= int.Parse(arraydeLinea[1]);
+            nombreDeCurso= arraydeLinea[2];
+            docente= arraydeLinea[3];
+            horarioDeClase= arraydeLinea[4];
+            sede= arraydeLinea[5];
+            correlativas= arraydeLinea[6];
 
         }
-        public static void ofertaAcademica()
-        {
-            foreach (var curso in TotalCursos)
-            {
-                Console.WriteLine($"Numero curso:{curso.NumeroCurso}, {curso.NombreDeMateria},Docente: {curso.Docente} dia y horario: {curso.DiayHorario} en {curso.Sede}");
-
-            }
-            Console.ReadKey();
-        }
-
+            
+            
+      
 
     }
 }
