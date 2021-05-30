@@ -77,14 +77,22 @@ namespace TP4
 
             for ( int i = 0; i<arrayCorrelativas.Length; i++)
             {
-                
-                string numeroMateriaCorrelativa = arrayCorrelativas[i]; //recorro el array, por cada dato dentro de larray, agarro y lo parseo a un int. Ese int, lo agrego a
-                int prueba = int.Parse(numeroMateriaCorrelativa);   //la lista de correlativas por cada materia.                                                             
-               
-                listaDeCorrelativas.Add(prueba);                             
+
+                //string numeroMateriaCorrelativa = arrayCorrelativas[i]; //recorro el array, por cada dato dentro de larray, agarro y lo parseo a un int. Ese int, lo agrego a
+                //int prueba = int.Parse(numeroMateriaCorrelativa);   //la lista de correlativas por cada materia.                                                             
+                int parseado;
+                if (!int.TryParse(arrayCorrelativas[i], out parseado))
+                {
+                    continue;
+                }
+                else
+                {
+                    listaDeCorrelativas.Add(parseado);
+                }
+                                            
             }
 
-
+            
         }
             
             
