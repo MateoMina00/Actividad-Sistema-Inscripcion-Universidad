@@ -7,14 +7,46 @@ namespace TP4
 {
     class Alumno
     {
-        //Propiedades
-        public int Registro { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        private string MateriasAprobadas { get; set; }
-        private bool UltimasCuatroMaterias { get; set; } //Si es true, no necesita validar correlativas.
-        public List<int> ListaMateriasAprobadas { get; set; }
+        //Variables
+        int registro;
+        string nombre;
+        string apellido;
+        string materiasAprobadas;
+        string condicion;
+        bool ultimasCuatroMaterias;//Si es true, no necesita validar correlativas.
+        List<int> listaMateriasAprobadas = new List<int>();
 
+        //Propiedades
+
+        public int Registro
+        {
+            set { registro = value; }
+            get { return registro; }
+        }
+
+        public string Nombre
+        {
+            set { nombre = value; }
+            get { return nombre; }
+        }
+
+        public string Apellido
+        {
+            set { nombre = value; }
+            get { return apellido; }
+        }
+
+        public string Condicion
+        {
+            set { condicion = value; }
+            get { return condicion; }
+        }
+
+        public bool UltimasCuatroMaterias
+        {
+            set { ultimasCuatroMaterias = value; }
+            get { return ultimasCuatroMaterias; }
+        }
 
         //Constructores      
 
@@ -33,9 +65,9 @@ namespace TP4
                         Registro = int.Parse(arraylinea[0]);
                         Apellido = arraylinea[2];
                         Nombre = arraylinea[1];
-                        MateriasAprobadas = arraylinea[4]; //Separamos las materias por guion     
-
-                        var arrayLista = MateriasAprobadas.Split(','); //Agarro el string, lo separo por guion, y me queda una lista de las materias aprobadas.
+                        materiasAprobadas = arraylinea[4]; //Separamos las materias por guion     
+                        Condicion = arraylinea[3];
+                        var arrayLista = materiasAprobadas.Split(','); //Agarro el string, lo separo por guion, y me queda una lista de las materias aprobadas.
                         foreach (var materiasSegunRegistro in arrayLista) //por cada materia, la agrego a la lista de materias aprobadas, ya parseadas.
                         {
                             int parseado;
@@ -45,7 +77,7 @@ namespace TP4
                             }
                             else
                             {
-                                ListaMateriasAprobadas.Add(parseado);
+                                listaMateriasAprobadas.Add(parseado);
                             }
 
                         }
@@ -56,20 +88,51 @@ namespace TP4
             }
             else Console.WriteLine("Error en la base de datos. Revise la conexion");
         }
+        public void mostrarMateriasDisponibles()
+        {
+            Console.WriteLine("hola");
+            foreach (CursoMateria item in CursoMateria.TotalCursos)
+            {
+                Console.WriteLine(item.NumerodeCurso + " " + item.NumeroDeMateria + " " + item.Docente + " " + item.HorarioDeClase
+                    + " " + item.Sede);
+            }
+            ////int[] materiasDisponibles;
+            //foreach (var curso in CursoMateria.TotalCursos)
+            //{
+            //    Console.WriteLine(curso.Correlativas);
+            //    foreach (var numeroCorrelativa in curso.Correlativas)
+            //    {
+            //        Console.WriteLine(numeroCorrelativa);
+            //    }
+            //}
+        }
         public void inscribir()
         {
             Console.WriteLine("¿Estas cursando las últimas 4 materias?. 1. Si 2.No)");
             int respuesta = Helper.ValidarNumero();
             if (respuesta == 1)
             {
-                //Proceso sin validar correlativas
+                ultimasCuatroMaterias = true;
             }
             else
             {
-                //proceso validando correlativas
+                ultimasCuatroMaterias = false;
             }
         }
 
+        public bool validacionAlumnoRegular()
+        {
+            bool validacion = true;
+
+
+            if (this.Condicion == "Libre")
+            {
+                validacion = false;
+            }
+
+
+            return validacion;
+        }
     }
 }
     
