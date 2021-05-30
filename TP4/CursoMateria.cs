@@ -12,6 +12,8 @@ namespace TP4
         
         public static List<CursoMateria> TotalCursos;
 
+        //Variables
+
         int nroDeCurso;
         int nroDeMateria;
         string nombreDeCurso;
@@ -20,6 +22,7 @@ namespace TP4
         string sede;
         string correlativas;
 
+        //Propiedades
         public int NumerodeCurso
         {
             get { return this.nroDeCurso; }
@@ -30,15 +33,20 @@ namespace TP4
             get { return this.nroDeMateria; }
         }
 
-        public string NombreDeCurso
+        public string Docente
         {
             get { return docente; }
+        }
+
+        public string NombreDeCurso
+        {
+            get { return nombreDeCurso; }
         }
         public string HorarioDeClase
         {
             get { return horarioDeClase; }
         }
-        // gon
+        
         public string Sede
         {
             get { return sede; }
@@ -56,7 +64,7 @@ namespace TP4
             
             nroDeCurso = int.Parse(arraydeLinea[0]);
             nroDeMateria= int.Parse(arraydeLinea[1]);
-            nombreDeCurso= arraydeLinea[2];
+            nombreDeCurso = arraydeLinea[2];
             docente= arraydeLinea[3];
             horarioDeClase= arraydeLinea[4];
             sede= arraydeLinea[5];

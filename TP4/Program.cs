@@ -37,9 +37,7 @@ namespace TP4
                                         CursoMateria.TotalCursos.Add(cuenta);
                                    
                                     }
-
-                                    
-
+                                                                        
                                     contador++;
                                 }
                                
@@ -48,7 +46,7 @@ namespace TP4
 
                             foreach (CursoMateria item in CursoMateria.TotalCursos)
                             {
-                                Console.WriteLine(item.);
+                                Console.WriteLine(item.NumerodeCurso + " " + item.NumeroDeMateria  );
                             }
 
                             break;
