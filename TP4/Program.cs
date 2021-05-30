@@ -9,7 +9,7 @@ namespace TP4
         {
             int registro = inscripcion.ingreso();
             Alumno alumnoIngresado = new Alumno(registro);
-            string nombreArchivoMaterias = @"C:\Users\mateo\source\repos\CAI\TP4\TP4\Materiass.txt";
+            string nombreArchivoMaterias = @"C:\Users\pc\source\repos\CAI\TP4\TP4\Materiass.txt";
 
 
             Console.Clear();
