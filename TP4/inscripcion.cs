@@ -7,9 +7,9 @@ namespace TP4
 {
     static class Inscripcion
     {
-        const string nombreArchivoMaterias = @"C:\Users\pc\source\repos\CAI\TP4\TP4\Materias.txt";
-        public static List<Curso> OfertaCuatrimestral;
-        public static List<List<int>> totalSolicitudes;
+        const string nombreArchivoMaterias = @"C:\Users\mateo\source\repos\CAI\TP4\TP4\Materias.txt";
+        public static List<Curso> ofertaCuatrimestral;
+        public static List<List<int>> registroDeSolicitudesEnviadas;
         public static int ingreso()
         {
             int registro;
@@ -24,17 +24,12 @@ namespace TP4
                 
                 if (!DatosAlumnos.validarAlumno(registro))//Si el registro del alumno no existe, le saldrá un error
                 {
-                    Console.WriteLine("Registro no encontrado. Toque cualquier tecla para continuar");
-                    
+                    Console.WriteLine("Registro no encontrado. Toque cualquier tecla para continuar");                    
                     int answer = Helper.ValidarNumero(); 
-                    
-
                 }
                 else
-                {
-                    
-                    cicloRegistro = true;
-                    
+                {                    
+                    cicloRegistro = true;                    
                 }
                 Console.Clear();
             } while (!cicloRegistro);
@@ -47,14 +42,13 @@ namespace TP4
             return opcion;
         }
         public static void confirmarSolicitud(Alumno alumno)
-        {
-            
-            totalSolicitudes.Add(alumno.listaCursosSolicitados);
+        {            
+            registroDeSolicitudesEnviadas.Add(alumno.listaCursosSolicitados);
         }
         public static void levantarArchivoMaterias()
         {
-            OfertaCuatrimestral = new List<Curso>();
-            totalSolicitudes = new List<List<int>>();
+            ofertaCuatrimestral = new List<Curso>();
+            registroDeSolicitudesEnviadas = new List<List<int>>();
             using (StreamReader reader = new StreamReader(nombreArchivoMaterias)) //creo un objeto que tiene el metodo de abrir el archivo y leer.                                                                                  // uso using para que se cierre el .txt cuando lo termino de usar
             {
                 int contador = 1;
@@ -66,17 +60,11 @@ namespace TP4
                     if (contador > 1) // el contador lo uso para que no me genere un objeto con el título
                     {
                         Curso cuenta = new Curso(linea);
-                        OfertaCuatrimestral.Add(cuenta);
+                        ofertaCuatrimestral.Add(cuenta);
                     }
                     contador++;
                 }
-
             }
         }
-
-       
-    
-    
-    
     }
 }

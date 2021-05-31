@@ -9,8 +9,6 @@ namespace TP4
     {
         //      0               1             2             3        4          5        6
         //Nro de Curso;Nro de Materia;Nombre de Materia;Docente;Dia y Horario;Sede; Correlativas(separadas por '-')         
-        
-        
 
         //Variables
 
@@ -85,8 +83,8 @@ namespace TP4
         public static void mostrarOferta()
         {
             Console.Clear();
-            Console.WriteLine("Oferta del cuatrimestre; ");
-            foreach (Curso item in Inscripcion.OfertaCuatrimestral)
+            Console.WriteLine("Oferta del cuatrimestre: ");
+            foreach (Curso item in Inscripcion.ofertaCuatrimestral)
             {
                 Console.WriteLine(item.NumerodeCurso + " " + item.NumeroDeMateria + " " + item.Docente + " " + item.HorarioDeClase
                     + " " + item.Sede);
@@ -99,12 +97,7 @@ namespace TP4
         
         public static void creacionDeListaGeneral()
         {
-            Inscripcion.OfertaCuatrimestral = new List<Curso>();
-        }
-        
-
-
-
-
+            Inscripcion.ofertaCuatrimestral = new List<Curso>();
+        }        
     }
 }

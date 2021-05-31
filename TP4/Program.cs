@@ -10,12 +10,10 @@ namespace TP4
             Inscripcion.levantarArchivoMaterias();
             int registro = Inscripcion.ingreso();
             Alumno alumnoIngresado = new Alumno(registro);
-            string archivoInscripcionesGeneradas = @"C:\Users\pc\source\repos\CAI\TP4\TP4\Inscripciones Solicitadas.txt";
-            
+            string archivoInscripcionesGeneradas = @"C:\Users\mateo\source\repos\CAI\TP4\TP4\Inscripciones Solicitadas.txt";           
 
-            
                 Console.WriteLine("Buenos días Sr/a" + "  " + alumnoIngresado.Apellido);
-                Console.WriteLine("Por Favor, presione cualquier tecla para ingresar al Menú");
+                Console.WriteLine("Por favor, presione cualquier tecla para ingresar al menú principal.");
 
                 Console.ReadKey();
 
@@ -45,7 +43,7 @@ namespace TP4
                             }
 
 
-                            else if (SiYaEstaInscripto())
+                            else if (alumnoInscripto())
                             {
                                 Console.WriteLine("Usted ya se inscribió");
                                 Console.WriteLine("Presione cualquier tecla para volver a Menú Principal");
@@ -101,13 +99,13 @@ namespace TP4
 
                             if (!validacion)
                             {
-                                Console.WriteLine("Usted no se ha inscripto todavía");
+                                Console.WriteLine("El alumno no se ha inscripto todavía");
                                 salir = true;
                                 Console.ReadKey();
                             }
                             else
                             {
-                                Console.WriteLine("Nombre; Apellido; Registro; Curso1; Curso2; Curso3");
+                                Console.WriteLine("Nombre;Apellido;Registro;Curso1;Curso2;Curso3");
                                 Console.WriteLine(reflejo);
                                 Console.ReadKey();
                                 salir = true;
@@ -116,7 +114,7 @@ namespace TP4
                             break;
                        
                         case 9:
-                            Console.WriteLine("Nota: se ha generado un archivo inscripciones.txt en la ruta local el cual contiene info de todas las incripciones.");
+                            Console.WriteLine("Nota: se ha generado un archivo Inscripciones Solicitadas.txt en la ruta local el cual contiene información de todas las incripciones.");
                             salir = true;
                             menuPrincipal = true;
                             break;
@@ -128,9 +126,8 @@ namespace TP4
                                         // donde se encontrarán todas las solicitudes
                                         // que se vayan ingresando
             {
-                string grabado="";
-                string nombreArchivo = @"C:\Users\pc\source\repos\CAI\TP4\TP4\Inscripciones Solicitadas.txt";
-                using (var writer = new StreamWriter(nombreArchivo,append:true))
+                string grabado="";                
+                using (var writer = new StreamWriter(archivoInscripcionesGeneradas, append:true))
                 {
                     for (int i = 0; i < alumnoIngresado.listaCursosSolicitados.Count; i++)
                     {
@@ -157,7 +154,7 @@ namespace TP4
 
             }
 
-            bool SiYaEstaInscripto()
+            bool alumnoInscripto()
             {
                 int contador = 1;
                 bool yaInscripto = false;
@@ -190,4 +187,4 @@ namespace TP4
 
         }
     }
-}
+    }

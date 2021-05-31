@@ -1,4 +1,2 @@
-Nombre;Apellido;Registro;Curso1;Curso2;Curso3
-Franco;Loncarica;893949;137;136;;
-Mateo;Mina;896633;137;135;;
-Daniel;Alves;895784;137;;;
+Nombre;Apellido;Registro;Curso1;Curso2;Curso3Mateo;Mina;896633;125;129;137;
+Mateo;Mina;896633;130;125;137;
