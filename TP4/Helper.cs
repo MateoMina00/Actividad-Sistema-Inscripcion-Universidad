@@ -67,6 +67,11 @@ namespace TP4
             } while (!ok);
             return fecha;
         }
+        //public static bool volverMenu()
+        //{
+        //    Console.WriteLine("¿Desea volver al menu principal?");
+        //    Console.WriteLine("Ingrese 1 para volver. ")
+        //}
         
     }
 }

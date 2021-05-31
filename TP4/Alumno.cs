@@ -13,7 +13,7 @@ namespace TP4
         string nombre;
         string apellido;
         string materiasAprobadas;
-        string condicion;
+        //string condicion;
         bool ultimasCuatroMaterias;//Si es true, no necesita validar correlativas.
         List<int> listaMateriasAprobadas;
         List<int> listaMateriasParaRendir = new List<int>();
@@ -39,11 +39,11 @@ namespace TP4
             get { return apellido; }
         }
 
-        public string Condicion
-        {
-            set { condicion = value; }
-            get { return condicion; }
-        }
+        //public string Condicion
+        //{
+        //    set { condicion = value; }
+        //    get { return condicion; }
+        //}
 
         public bool UltimasCuatroMaterias
         {
@@ -68,9 +68,9 @@ namespace TP4
                         Registro = int.Parse(arraylinea[0]);
                         Apellido = arraylinea[2];
                         Nombre = arraylinea[1];
-                        materiasAprobadas = arraylinea[4]; //Separamos las materias por guion     
+                        materiasAprobadas = arraylinea[3]; //Separamos las materias por guion     
                         listaMateriasAprobadas=new List<int>();
-                        Condicion = arraylinea[3];
+                        //Condicion = arraylinea[4];
                         var arrayLista = materiasAprobadas.Split(','); //Agarro el string, lo separo por guion, y me queda una lista de las materias aprobadas.
                         foreach (var materiasSegunRegistro in arrayLista) //por cada materia, la agrego a la lista de materias aprobadas, ya parseadas.
                         {
@@ -99,17 +99,17 @@ namespace TP4
             {
                 foreach (int codigoMateriaAprobada in listaMateriasAprobadas)
                 {
-                    foreach (var CodigoMateriaOfrecida in Inscripcion.TotalCursos)
+                    foreach (var CodigoMateriaOfrecida in Inscripcion.OfertaCuatrimestral)
                     {
-                        if (codigoMateriaAprobada != CodigoMateriaOfrecida.NumerodeCurso)
-                            if (!listaMateriasParaRendir.Contains(CodigoMateriaOfrecida.NumerodeCurso))
-                                listaMateriasParaRendir.Add(CodigoMateriaOfrecida.NumerodeCurso);
+                        if (codigoMateriaAprobada != CodigoMateriaOfrecida.NumeroDeMateria)
+                            if (!listaMateriasParaRendir.Contains(CodigoMateriaOfrecida.NumeroDeMateria))
+                                listaMateriasParaRendir.Add(CodigoMateriaOfrecida.NumeroDeMateria);
                     }
                 }
 
                 for (int i = 0; i < listaMateriasAprobadas.Count; i++)
                 {
-                    foreach (Curso curso in Inscripcion.TotalCursos) //Cada curso en la lista de todas las materias
+                    foreach (Curso curso in Inscripcion.OfertaCuatrimestral) //Cada curso en la lista de todas las materias
                     {
                         for (int a = 0; a < curso.Correlativas.Count; a++)  //Para cada correlativa de esa materia
                         {
@@ -124,60 +124,58 @@ namespace TP4
                     }
                 }               
                 int contador = 0;
+                Console.Clear();
                 foreach (var item in listaMateriasParaRendir)
                 {
-                    foreach (var curso in Inscripcion.TotalCursos)
+                    foreach (var curso in Inscripcion.OfertaCuatrimestral)
                     {
-                        if(item == curso.NumerodeCurso)
+                        
+                        if(item == curso.NumeroDeMateria)
                         {
                             contador += 1;
-                            Console.WriteLine($"Curso: {curso.NumerodeCurso} - {curso.NombreDeMateria} - {curso.Docente} - {curso.HorarioDeClase} - {curso.Sede}");
+                            Console.WriteLine($"\nCurso: {curso.NumerodeCurso} - Nro. Materia:{curso.NumeroDeMateria}- {curso.NombreDeMateria} - {curso.Docente} - {curso.HorarioDeClase} - {curso.Sede}");
                         }
                     }
                 }
                 if (contador == 0)
                     Console.WriteLine("No tienes cursos disponibles para rendir");
-                else
-                {
-                    Console.WriteLine("Podes rendir los Siguientes cursos: ");
-                }
+                
             }
             else
             {
                 foreach (int codigoMateriaAprobada in listaMateriasAprobadas)
                 {
-                    foreach (var CodigoMateriaOfrecida in Inscripcion.TotalCursos)
+                    foreach (var CodigoMateriaOfrecida in Inscripcion.OfertaCuatrimestral)
                     {
-                        if (codigoMateriaAprobada != CodigoMateriaOfrecida.NumerodeCurso)
-                            if (!listaMateriasParaRendir.Contains(CodigoMateriaOfrecida.NumerodeCurso))
-                                listaMateriasParaRendir.Add(CodigoMateriaOfrecida.NumerodeCurso);
+                        if (codigoMateriaAprobada != CodigoMateriaOfrecida.NumeroDeMateria)
+                            if (!listaMateriasParaRendir.Contains(CodigoMateriaOfrecida.NumeroDeMateria))
+                                listaMateriasParaRendir.Add(CodigoMateriaOfrecida.NumeroDeMateria);
                     }
                 }
                 int contador = 0;
+                Console.Clear();
                 foreach (var item in listaMateriasParaRendir)
                 {
-                    foreach (var curso in Inscripcion.TotalCursos)
+                    foreach (var curso in Inscripcion.OfertaCuatrimestral)
                     {
-                        if (item == curso.NumerodeCurso)
+                        if (item == curso.NumeroDeMateria)
                         {
                             contador += 1;
-                            Console.WriteLine($"Curso: {curso.NumerodeCurso} - {curso.NombreDeMateria} - {curso.Docente} - {curso.HorarioDeClase} - {curso.Sede}");
+                            Console.WriteLine($"\nCurso: {curso.NumerodeCurso} - Nro. Materia:{curso.NumeroDeMateria}- {curso.NombreDeMateria} - {curso.Docente} - {curso.HorarioDeClase} - {curso.Sede}");
                         }
                     }
                 }
                 if (contador == 0)
                     Console.WriteLine("No tienes cursos disponibles para rendir");
-                else
-                {
-                    Console.WriteLine("Podes rendir los Siguientes cursos: ");
-                }
+                
 
             }
 
         }
         public void inscribir()
         {
-            Console.WriteLine("¿Estas cursando las últimas 4 materias?. 1. Si 2.No)");
+            Console.Clear();
+            Console.WriteLine("¿Estas cursando las últimas 4 materias?.\n 1.Si \n 2.No");
             int respuesta = Helper.ValidarNumero();
             if (respuesta == 1)
             {
@@ -189,49 +187,100 @@ namespace TP4
             }
         }
 
-        public bool validacionAlumnoRegular()
-        {
-            bool validacion = true;
+        //public bool validacionAlumnoRegular()
+        //{
+        //    bool validacion = true;
 
 
-            if (this.Condicion == "Libre")
-            {
-                validacion = false;
-            }
+        //    if (this.Condicion == "Libre")
+        //    {
+        //        validacion = false;
+        //    }
 
 
-            return validacion;
-        }
+        //    return validacion;
+        //}
         public void enviarSolicitud()
         {
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("Podes inscribirte en los siguientes cursos. Ingresa su codigo (Podes un maximo de 3 por inscripción)");
+            Console.WriteLine("Tene cuidado de anotarte 2 veces en la misma materia (revisa su codigo).En todo caso contactate con el administrador");
             int contador = 0;
             bool ciclo = false;
             do
             {
-                Console.WriteLine("Favor de ingresar el codigo del curso: ");
+                Console.WriteLine("Ingrese codigo: ");
                 int CodigoIngresadoCurso = Helper.ValidarNumero();
-
-                if (listaMateriasParaRendir.Contains(CodigoIngresadoCurso))
+                bool existe = false;
+                for (int r = 0; r < listaMateriasParaRendir.Count; r++)
                 {
-                    listaCursosSolicitados.Add(CodigoIngresadoCurso);
-                    contador += 1;
-                    if (contador == 3)
+                    for (int o = 0; o < Inscripcion.OfertaCuatrimestral.Count; o++)
                     {
-                        Console.WriteLine("Inscripcion completa");
-                        ciclo = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Presione 1 para agregar otro curso. 9 para salir.");
-                        int respuesta = Helper.ValidarNumero();
-                        if (respuesta == 9)
-                            ciclo = true;
-                    }
+                        if (Inscripcion.OfertaCuatrimestral[o].NumeroDeMateria == listaMateriasParaRendir[r]) //Si la materia que me trae, coincide 
+                        {
+                            
+                            foreach (var curso in Inscripcion.OfertaCuatrimestral)
+                            {
+                                bool existeEnLista = listaCursosSolicitados.Contains(CodigoIngresadoCurso);
+                                if (curso.NumerodeCurso == CodigoIngresadoCurso && !existeEnLista )//Si el curso de la materia que trajo, es igual al codigo ingresado
+                                {
+                                    existe = true;
+                                    contador += 1;
+                                    int saliente = CodigoIngresadoCurso;
+                                    listaCursosSolicitados.Add(saliente);
+                                    if (contador == 3)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Inscripcion completa. Toque para continuar");
+                                        Console.ReadKey();
+                                        ciclo = true;
+                                    }
+                                    else
+                                    {                                        
+                                        Console.WriteLine("Ingrese: \n1.Para agregar otro curso. \n9. Finalizar");
+                                        int respuesta = Helper.ValidarNumero();
+                                        if (respuesta == 9)
+                                            ciclo = true;
 
+                                    }
+                                }
+                                continue;
+
+                            }
+                        }
+                        
+                    }
                 }
-                else Console.WriteLine("Favor de ingresar un codigo correcto");
+                if (!existe)
+                {
+                    Console.WriteLine("El codigo ingresado es incorrecto o ya ha sido inscripto.");
+                    Console.WriteLine("1. Intentar de nuevo. 9 para salir.");
+                    int respuesta = Helper.ValidarNumero();
+                    if (respuesta == 9)
+                        ciclo = true;
+                }
+            } while (!ciclo);            
+            Console.Clear();
+            Console.WriteLine("Se ha generado certificado. En 14 dias se publicará los resultados.");
+            
 
-            } while (!ciclo);
+        }
+        public void mostrarInscripcion()
+        {
+            Console.WriteLine("Usted se ha inscripto en: ");
+            foreach (var codigoCurso in listaCursosSolicitados)
+            {
+                foreach (var curso in Inscripcion.OfertaCuatrimestral)
+                {
+                    if(codigoCurso == curso.NumerodeCurso)
+                    {
+                        Console.WriteLine($"Curso: {curso.NumerodeCurso} - Nro. Materia:{curso.NumeroDeMateria}- {curso.NombreDeMateria} - {curso.Docente} - {curso.HorarioDeClase} - {curso.Sede}");
+                    }
+                }
+            }
+            Console.ReadKey();
         }
     }
 }

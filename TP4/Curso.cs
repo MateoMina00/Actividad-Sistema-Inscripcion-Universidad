@@ -84,18 +84,22 @@ namespace TP4
         }
         public static void mostrarOferta()
         {
-            foreach (Curso item in Inscripcion.TotalCursos)
+            Console.Clear();
+            Console.WriteLine("Oferta del cuatrimestre; ");
+            foreach (Curso item in Inscripcion.OfertaCuatrimestral)
             {
                 Console.WriteLine(item.NumerodeCurso + " " + item.NumeroDeMateria + " " + item.Docente + " " + item.HorarioDeClase
                     + " " + item.Sede);
             }
 
+            Console.WriteLine("Toque para salir");
             Console.ReadKey();
+
         }
         
         public static void creacionDeListaGeneral()
         {
-            Inscripcion.TotalCursos = new List<Curso>();
+            Inscripcion.OfertaCuatrimestral = new List<Curso>();
         }
         
 

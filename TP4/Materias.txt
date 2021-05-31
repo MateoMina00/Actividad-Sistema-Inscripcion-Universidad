@@ -1,0 +1,16 @@
+Nro de Curso;Nro de Materia;Nombre de Materia;Docente;Dia y Horario;Sede;Correlativas
+123;1654;Construccion de Aplicaciones Informáticas;Mendez Cerezuela Alejandro Luis;Lu y Ju 19-21hs;Cordoba;1652-1799
+124;1654;Construccion de Aplicaciones Informáticas;Mendez Cerezuela Alejandro Luis;Ma y Vi 19-21hs;Cordoba;1652-1799
+125;1653;Tecnolo. De los Computadores;Martinez Miguel Antonio;Lu y Ju 19-21hs;Cordoba;1652
+126;1653;Tecnolo. De los Computadores;Fuchs Jorge Hector Antonio ;Ma y Vi 19-21hs;Cordoba;1652
+127;1659;Audit. Y Seg. De los Sistemas de Información;Marra Gaston Ignacio;Mi y VI 21-23hs;Cordoba;1601
+128;1659;Audit. Y Seg. De los Sistemas de Información;Gil Pablo Mariano;Lu y Ju 19-21hs;Cordoba;1601
+129;1652;Teoría de los Lenguajes y Algoritmos;Arevalo Pla Juan Jose;Ma y Vi 19-21hs;Cordoba;1660-1601-1799
+130;1652;Teoría de los Lenguajes y Algoritmos;Veriansky Victor Gustavo;Lu y Ju 19-21hs;Cordoba;1660-1601-1799
+131;1601;Ing. De Software;Briano Cesar Ariel;Ma y Vi 19-21hs;Cordoba;1653-1799
+132;1601;Ing. De Software;Veriansky Victor Gustavo;Mi y VI 21-23hs;Cordoba;1653-1799
+133;1660;Act. Prof . Del Lic en sistemas de Información;Piorun Juan Daniel -Duarte Ivan Ezequiel ;Mi y VI 21-23hs;Cordoba;1654-1653-1659-1652-1601-1660-1799
+134;1660;Act. Prof . Del Lic en sistemas de Información;Michalla Barbara;Lu y Ju 19-21hs;Cordoba;1654-1653-1659-1652-1601-1660-1799
+135;1799;Gestión de Recursos Informáticos;Freijedo Claudio Felipe -Draque Gaston Patricio;Ma y Vi 19-21hs;Cordoba;
+136;1799;Gestión de Recursos Informáticos;Yudowsky Carla Andrea;Lu y Ju 19-21hs;Cordoba;
+137;1799;Gestión de Recursos Informáticos;Mazza Nestor Hugo;Ma y Vi 19-21hs;San Isidro;

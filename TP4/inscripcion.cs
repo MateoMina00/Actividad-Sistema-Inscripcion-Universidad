@@ -7,8 +7,8 @@ namespace TP4
 {
     static class Inscripcion
     {
-        const string nombreArchivoMaterias = @"C:\Users\mateo\source\repos\CAI\TP4\TP4\Materiass.txt";
-        public static List<Curso> TotalCursos;
+        const string nombreArchivoMaterias = @"C:\Users\mateo\source\repos\CAI\TP4\TP4\Materias.txt";
+        public static List<Curso> OfertaCuatrimestral;
         public static List<List<int>> totalSolicitudes;
         public static int ingreso()
         {
@@ -24,7 +24,7 @@ namespace TP4
                 
                 if (!DatosAlumnos.validarAlumno(registro))//Si el registro del alumno no existe, preguntar que desea
                 {
-                    Console.WriteLine("Registro no encontrado");
+                    Console.WriteLine("Registro no encontrado. Toque cualquier tecla para continuar");
                     
                     int answer = Helper.ValidarNumero(); 
                     
@@ -32,10 +32,11 @@ namespace TP4
                 }
                 else
                 {
-                    Console.WriteLine("Registro ingresado correctamnete");
+                    Console.WriteLine("Registro ingresado correctamnete. Toque cualquier tecla para continuar");
                     cicloRegistro = true;
                     Console.ReadKey();
                 }
+                Console.Clear();
             } while (!cicloRegistro);
             return registro;
         } 
@@ -52,7 +53,7 @@ namespace TP4
         }
         public static void levantarArchivoMaterias()
         {
-            TotalCursos = new List<Curso>();
+            OfertaCuatrimestral = new List<Curso>();
             totalSolicitudes = new List<List<int>>();
             using (StreamReader reader = new StreamReader(nombreArchivoMaterias)) //creo un objeto que tiene el metodo de abrir el archivo y leer.                                                                                  // uso using para que se cierre el .txt cuando lo termino de usar
             {
@@ -65,7 +66,7 @@ namespace TP4
                     if (contador > 1) // el contador lo uso para que no me genere un objeto con el título
                     {
                         Curso cuenta = new Curso(linea);
-                        TotalCursos.Add(cuenta);
+                        OfertaCuatrimestral.Add(cuenta);
                     }
                     contador++;
                 }
