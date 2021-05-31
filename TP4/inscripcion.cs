@@ -5,10 +5,10 @@ using System.IO;
 
 namespace TP4
 {
-    static class inscripcion
+    static class Inscripcion
     {
         const string nombreArchivoMaterias = @"C:\Users\mateo\source\repos\CAI\TP4\TP4\Materiass.txt";
-        public static List<CursoMateria> TotalCursos;
+        public static List<Curso> TotalCursos;
         public static List<List<int>> totalSolicitudes;
         public static int ingreso()
         {
@@ -52,7 +52,7 @@ namespace TP4
         }
         public static void levantarArchivoMaterias()
         {
-            TotalCursos = new List<CursoMateria>();
+            TotalCursos = new List<Curso>();
             totalSolicitudes = new List<List<int>>();
             using (StreamReader reader = new StreamReader(nombreArchivoMaterias)) //creo un objeto que tiene el metodo de abrir el archivo y leer.                                                                                  // uso using para que se cierre el .txt cuando lo termino de usar
             {
@@ -64,7 +64,7 @@ namespace TP4
                     string linea = reader.ReadLine();
                     if (contador > 1) // el contador lo uso para que no me genere un objeto con el título
                     {
-                        CursoMateria cuenta = new CursoMateria(linea);
+                        Curso cuenta = new Curso(linea);
                         TotalCursos.Add(cuenta);
                     }
                     contador++;

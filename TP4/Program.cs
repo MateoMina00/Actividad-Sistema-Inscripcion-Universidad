@@ -7,21 +7,21 @@ namespace TP4
     {
         static void Main(string[] args)
         {
-            inscripcion.levantarArchivoMaterias();
-            int registro = inscripcion.ingreso();
+            Inscripcion.levantarArchivoMaterias();
+            int registro = Inscripcion.ingreso();
             Alumno alumnoIngresado = new Alumno(registro);                       
             
             Console.Clear();
             bool menuPrincipal = false;
             do
             {
-                int numeroMenuPrincipal = inscripcion.mostrarMenu();
+                int numeroMenuPrincipal = Inscripcion.mostrarMenu();
                 bool salir = false;
                 switch (numeroMenuPrincipal)
                 {
                     case 1:
                         {
-                            CursoMateria.mostrarOferta();
+                            Curso.mostrarOferta();
                             break;
                         }
 
@@ -35,7 +35,7 @@ namespace TP4
                             alumnoIngresado.inscribir(); //valida 4 materias
                             alumnoIngresado.mostrarMateriasDisponibles(); //muestra lo que podes rendir
                             alumnoIngresado.enviarSolicitud(); //Tengo que validar, que ingrese lo que muestre la lista a rendir.
-                            inscripcion.confirmarSolicitud(alumnoIngresado);
+                            Inscripcion.confirmarSolicitud(alumnoIngresado);
                             
                         }
                         break;

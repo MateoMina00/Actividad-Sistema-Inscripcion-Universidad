@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TP4
 {
-    class CursoMateria
+    class Curso
     {
         //      0               1             2             3        4          5        6
         //Nro de Curso;Nro de Materia;Nombre de Materia;Docente;Dia y Horario;Sede; Correlativas(separadas por '-')         
@@ -60,7 +60,7 @@ namespace TP4
             get { return listaDeCorrelativas; }
         }
         
-        public CursoMateria(string linea)
+        public Curso(string linea)
         {
 
 
@@ -84,7 +84,7 @@ namespace TP4
         }
         public static void mostrarOferta()
         {
-            foreach (CursoMateria item in inscripcion.TotalCursos)
+            foreach (Curso item in Inscripcion.TotalCursos)
             {
                 Console.WriteLine(item.NumerodeCurso + " " + item.NumeroDeMateria + " " + item.Docente + " " + item.HorarioDeClase
                     + " " + item.Sede);
@@ -95,7 +95,7 @@ namespace TP4
         
         public static void creacionDeListaGeneral()
         {
-            inscripcion.TotalCursos = new List<CursoMateria>();
+            Inscripcion.TotalCursos = new List<Curso>();
         }
         
 

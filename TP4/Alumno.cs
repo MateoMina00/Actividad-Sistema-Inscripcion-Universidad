@@ -99,7 +99,7 @@ namespace TP4
             {
                 foreach (int codigoMateriaAprobada in listaMateriasAprobadas)
                 {
-                    foreach (var CodigoMateriaOfrecida in inscripcion.TotalCursos)
+                    foreach (var CodigoMateriaOfrecida in Inscripcion.TotalCursos)
                     {
                         if (codigoMateriaAprobada != CodigoMateriaOfrecida.NumerodeCurso)
                             if (!listaMateriasParaRendir.Contains(CodigoMateriaOfrecida.NumerodeCurso))
@@ -109,7 +109,7 @@ namespace TP4
 
                 for (int i = 0; i < listaMateriasAprobadas.Count; i++)
                 {
-                    foreach (CursoMateria curso in inscripcion.TotalCursos) //Cada curso en la lista de todas las materias
+                    foreach (Curso curso in Inscripcion.TotalCursos) //Cada curso en la lista de todas las materias
                     {
                         for (int a = 0; a < curso.Correlativas.Count; a++)  //Para cada correlativa de esa materia
                         {
@@ -126,7 +126,7 @@ namespace TP4
                 int contador = 0;
                 foreach (var item in listaMateriasParaRendir)
                 {
-                    foreach (var curso in inscripcion.TotalCursos)
+                    foreach (var curso in Inscripcion.TotalCursos)
                     {
                         if(item == curso.NumerodeCurso)
                         {
@@ -146,7 +146,7 @@ namespace TP4
             {
                 foreach (int codigoMateriaAprobada in listaMateriasAprobadas)
                 {
-                    foreach (var CodigoMateriaOfrecida in inscripcion.TotalCursos)
+                    foreach (var CodigoMateriaOfrecida in Inscripcion.TotalCursos)
                     {
                         if (codigoMateriaAprobada != CodigoMateriaOfrecida.NumerodeCurso)
                             if (!listaMateriasParaRendir.Contains(CodigoMateriaOfrecida.NumerodeCurso))
@@ -156,7 +156,7 @@ namespace TP4
                 int contador = 0;
                 foreach (var item in listaMateriasParaRendir)
                 {
-                    foreach (var curso in inscripcion.TotalCursos)
+                    foreach (var curso in Inscripcion.TotalCursos)
                     {
                         if (item == curso.NumerodeCurso)
                         {
