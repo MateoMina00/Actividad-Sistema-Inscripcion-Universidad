@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.IO;
+
 
 namespace TP4
 {
@@ -9,9 +9,8 @@ namespace TP4
     {
         //      0               1             2             3        4          5        6
         //Nro de Curso;Nro de Materia;Nombre de Materia;Docente;Dia y Horario;Sede; Correlativas(separadas por '-')         
-
-        public static List<CursoMateria> TotalCursos;
-
+        
+        
 
         //Variables
 
@@ -60,41 +59,45 @@ namespace TP4
         {
             get { return listaDeCorrelativas; }
         }
-
-        public static void creacionDeListaGeneral()
-        {
-            TotalCursos = new List<CursoMateria>();
-        }
-
+        
         public CursoMateria(string linea)
         {
 
 
             listaDeCorrelativas = new List<int>();
-
             var arraydeLinea = linea.Split(';');
-
             nroDeCurso = int.Parse(arraydeLinea[0]);
             NumeroDeMateria = int.Parse(arraydeLinea[1]);
             NombreDeMateria = arraydeLinea[2];
             docente = arraydeLinea[3];
             horarioDeClase = arraydeLinea[4];
             sede = arraydeLinea[5];
-
             var lineaCorrelativas = arraydeLinea[6]; //linea correlativa
             var arrayCorrelativas = lineaCorrelativas.Split('-'); //array asd-asd-asd
-
             for (int i = 0; i < arrayCorrelativas.Length; i++) //recorro el array, por cada dato dentro de larray,
             {
                 if (!int.TryParse(arrayCorrelativas[i], out int prueba))  //agarro y lo parseo a un int. Ese int, lo agrego a
                 {                                                           //la lista de correlativas por cada materia.  
-
                     listaDeCorrelativas.Add(prueba);
                 }
             }
-
-
         }
+        public static void mostrarOferta()
+        {
+            foreach (CursoMateria item in inscripcion.TotalCursos)
+            {
+                Console.WriteLine(item.NumerodeCurso + " " + item.NumeroDeMateria + " " + item.Docente + " " + item.HorarioDeClase
+                    + " " + item.Sede);
+            }
+
+            Console.ReadKey();
+        }
+        
+        public static void creacionDeListaGeneral()
+        {
+            inscripcion.TotalCursos = new List<CursoMateria>();
+        }
+        
 
 
 

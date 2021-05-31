@@ -99,7 +99,7 @@ namespace TP4
             {
                 foreach (int codigoMateriaAprobada in listaMateriasAprobadas)
                 {
-                    foreach (var CodigoMateriaOfrecida in CursoMateria.TotalCursos)
+                    foreach (var CodigoMateriaOfrecida in inscripcion.TotalCursos)
                     {
                         if (codigoMateriaAprobada != CodigoMateriaOfrecida.NumerodeCurso)
                             if (!listaMateriasParaRendir.Contains(CodigoMateriaOfrecida.NumerodeCurso))
@@ -109,7 +109,7 @@ namespace TP4
 
                 for (int i = 0; i < listaMateriasAprobadas.Count; i++)
                 {
-                    foreach (CursoMateria curso in CursoMateria.TotalCursos) //Cada curso en la lista de todas las materias
+                    foreach (CursoMateria curso in inscripcion.TotalCursos) //Cada curso en la lista de todas las materias
                     {
                         for (int a = 0; a < curso.Correlativas.Count; a++)  //Para cada correlativa de esa materia
                         {
@@ -122,28 +122,54 @@ namespace TP4
                                 listaMateriasParaRendir.Remove(listaMateriasAprobadas[i]);
                         }
                     }
-                }
-                Console.WriteLine("Podes rendir los Siguientes cursos: ");
+                }               
+                int contador = 0;
                 foreach (var item in listaMateriasParaRendir)
                 {
-                    Console.WriteLine(item);
+                    foreach (var curso in inscripcion.TotalCursos)
+                    {
+                        if(item == curso.NumerodeCurso)
+                        {
+                            contador += 1;
+                            Console.WriteLine($"Curso: {curso.NumerodeCurso} - {curso.NombreDeMateria} - {curso.Docente} - {curso.HorarioDeClase} - {curso.Sede}");
+                        }
+                    }
+                }
+                if (contador == 0)
+                    Console.WriteLine("No tienes cursos disponibles para rendir");
+                else
+                {
+                    Console.WriteLine("Podes rendir los Siguientes cursos: ");
                 }
             }
             else
             {
                 foreach (int codigoMateriaAprobada in listaMateriasAprobadas)
                 {
-                    foreach (var CodigoMateriaOfrecida in CursoMateria.TotalCursos)
+                    foreach (var CodigoMateriaOfrecida in inscripcion.TotalCursos)
                     {
                         if (codigoMateriaAprobada != CodigoMateriaOfrecida.NumerodeCurso)
                             if (!listaMateriasParaRendir.Contains(CodigoMateriaOfrecida.NumerodeCurso))
                                 listaMateriasParaRendir.Add(CodigoMateriaOfrecida.NumerodeCurso);
                     }
                 }
-                Console.WriteLine("Podes rendir los siguientes cursos: ");
+                int contador = 0;
                 foreach (var item in listaMateriasParaRendir)
                 {
-                    Console.WriteLine(item);
+                    foreach (var curso in inscripcion.TotalCursos)
+                    {
+                        if (item == curso.NumerodeCurso)
+                        {
+                            contador += 1;
+                            Console.WriteLine($"Curso: {curso.NumerodeCurso} - {curso.NombreDeMateria} - {curso.Docente} - {curso.HorarioDeClase} - {curso.Sede}");
+                        }
+                    }
+                }
+                if (contador == 0)
+                    Console.WriteLine("No tienes cursos disponibles para rendir");
+                else
+                {
+                    Console.WriteLine("Podes rendir los Siguientes cursos: ");
                 }
 
             }
