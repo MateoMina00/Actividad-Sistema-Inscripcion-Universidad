@@ -7,7 +7,7 @@ namespace TP4
 {
     static class Inscripcion
     {
-        const string nombreArchivoMaterias = @"C:\Users\mateo\source\repos\CAI\TP4\TP4\Materias.txt";
+        const string nombreArchivoMaterias = @"C:\Users\pc\source\repos\CAI\TP4\TP4\Materias.txt";
         public static List<Curso> OfertaCuatrimestral;
         public static List<List<int>> totalSolicitudes;
         public static int ingreso()
@@ -22,7 +22,7 @@ namespace TP4
                 Console.WriteLine("Favor de ingresar su registro");
                 registro = Helper.ValidarNumero();
                 
-                if (!DatosAlumnos.validarAlumno(registro))//Si el registro del alumno no existe, preguntar que desea
+                if (!DatosAlumnos.validarAlumno(registro))//Si el registro del alumno no existe, le saldrá un error
                 {
                     Console.WriteLine("Registro no encontrado. Toque cualquier tecla para continuar");
                     
@@ -32,9 +32,9 @@ namespace TP4
                 }
                 else
                 {
-                    Console.WriteLine("Registro ingresado correctamnete. Toque cualquier tecla para continuar");
+                    
                     cicloRegistro = true;
-                    Console.ReadKey();
+                    
                 }
                 Console.Clear();
             } while (!cicloRegistro);
@@ -42,7 +42,7 @@ namespace TP4
         } 
         public static int mostrarMenu() //Ojo que si ingresar un numero incorrecto, rompe.
         {
-            Console.WriteLine("1. Ver oferta academica. \n2. Inscribite \n9. Salir");
+            Console.WriteLine("1. Ver oferta academica. \n2. Inscribite \n3. Solicitudes Enviadas  \n9. Salir");
             int opcion = Helper.validarNroMenu();
             return opcion;
         }
@@ -73,5 +73,10 @@ namespace TP4
 
             }
         }
+
+       
+    
+    
+    
     }
 }

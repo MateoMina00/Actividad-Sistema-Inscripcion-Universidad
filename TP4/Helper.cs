@@ -16,7 +16,7 @@ namespace TP4
                 {
                     Console.WriteLine("Ingrese una opcion valida");
                 }
-                if (!numero.Equals(1) && !numero.Equals(9) && !numero.Equals(2))
+                if (!numero.Equals(1) && !numero.Equals(9) && !numero.Equals(2) && !numero.Equals(3) )
                 {
                     Console.WriteLine("Favor de ingresar una opcion valida");
                 }

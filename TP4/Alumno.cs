@@ -13,7 +13,7 @@ namespace TP4
         string nombre;
         string apellido;
         string materiasAprobadas;
-        //string condicion;
+        string condicion;
         bool ultimasCuatroMaterias;//Si es true, no necesita validar correlativas.
         List<int> listaMateriasAprobadas;
         List<int> listaMateriasParaRendir = new List<int>();
@@ -39,11 +39,11 @@ namespace TP4
             get { return apellido; }
         }
 
-        //public string Condicion
-        //{
-        //    set { condicion = value; }
-        //    get { return condicion; }
-        //}
+        public string Condicion
+        {
+            set { condicion = value; }
+            get { return condicion; }
+        }
 
         public bool UltimasCuatroMaterias
         {
@@ -70,7 +70,7 @@ namespace TP4
                         Nombre = arraylinea[1];
                         materiasAprobadas = arraylinea[3]; //Separamos las materias por guion     
                         listaMateriasAprobadas=new List<int>();
-                        //Condicion = arraylinea[4];
+                        Condicion = arraylinea[4];
                         var arrayLista = materiasAprobadas.Split(','); //Agarro el string, lo separo por guion, y me queda una lista de las materias aprobadas.
                         foreach (var materiasSegunRegistro in arrayLista) //por cada materia, la agrego a la lista de materias aprobadas, ya parseadas.
                         {
@@ -187,19 +187,19 @@ namespace TP4
             }
         }
 
-        //public bool validacionAlumnoRegular()
-        //{
-        //    bool validacion = true;
+        public bool validacionAlumnoRegular()
+        {
+            bool validacion = true;
 
 
-        //    if (this.Condicion == "Libre")
-        //    {
-        //        validacion = false;
-        //    }
+            if (this.Condicion == "Libre")
+            {
+                validacion = false;
+            }
 
 
-        //    return validacion;
-        //}
+            return validacion;
+        }
         public void enviarSolicitud()
         {
             Console.WriteLine("");
