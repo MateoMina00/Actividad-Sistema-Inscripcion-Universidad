@@ -54,11 +54,13 @@ namespace TP4
                         {
                             Console.WriteLine("Usted es un alumno calificado como Libre. Dirijase por favor a Departamento de Alumnos");
                         }
-
                         else
                         {
-                            //alumnoIngresado.mostrarMateriasDisponibles();
-                            alumnoIngresado.inscribir();
+                            alumnoIngresado.inscribir(); //valida 4 materias
+                            alumnoIngresado.mostrarMateriasDisponibles(); //muestra lo que podes rendir
+                            alumnoIngresado.enviarSolicitud(); //Tengo que validar, que ingrese lo que muestre la lista a rendir.
+                            inscripcion.confirmarSolicitud(alumnoIngresado);
+                            
                         }
                         break;
 

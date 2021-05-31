@@ -16,8 +16,8 @@ namespace TP4
         //Variables
 
         int nroDeCurso;
-        int nroDeMateria;
-        string nombreDeCurso;
+        int numerodeMateria;
+        string nombreDeMateria;               
         string docente;
         string horarioDeClase;
         string sede;
@@ -27,22 +27,25 @@ namespace TP4
         public int NumerodeCurso
         {
             get { return this.nroDeCurso; }
+            set { nroDeCurso = value; }
         }
 
         public int NumeroDeMateria
         {
-            get { return this.nroDeMateria; }
+            get { return numerodeMateria; }
+            set { numerodeMateria = value; }
+        }
+        public string NombreDeMateria
+        {
+            get { return this.nombreDeMateria; }
+            set { nombreDeMateria = value; }
         }
 
         public string Docente
         {
             get { return docente; }
         }
-
-        public string NombreDeCurso
-        {
-            get { return nombreDeCurso; }
-        }
+       
         public string HorarioDeClase
         {
             get { return horarioDeClase; }
@@ -72,8 +75,8 @@ namespace TP4
             var arraydeLinea = linea.Split(';');
 
             nroDeCurso = int.Parse(arraydeLinea[0]);
-            nroDeMateria = int.Parse(arraydeLinea[1]);
-            nombreDeCurso = arraydeLinea[2];
+            NumeroDeMateria = int.Parse(arraydeLinea[1]);
+            NombreDeMateria = arraydeLinea[2];
             docente = arraydeLinea[3];
             horarioDeClase = arraydeLinea[4];
             sede = arraydeLinea[5];

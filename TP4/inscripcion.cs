@@ -6,6 +6,7 @@ namespace TP4
 {
     static class inscripcion
     {
+        public static List<List<int>> totalSolicitudes = new List<List<int>>();
         public static int ingreso()
         {
             int registro;
@@ -41,9 +42,10 @@ namespace TP4
             int opcion = Helper.validarNroMenu();
             return opcion;
         }
-        public static void inscribirAlumno()
+        public static void confirmarSolicitud(Alumno alumno)
         {
-
+            
+            totalSolicitudes.Add(alumno.listaCursosSolicitados);
         }
     }
 }
