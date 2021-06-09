@@ -109,22 +109,21 @@ namespace TP4
 
                 for (int i = 0; i < listaMateriasAprobadas.Count; i++)
                 {
-                    foreach (Curso curso in Inscripcion.ofertaCuatrimestral) //Cada curso en la lista de todas las materias
+                  foreach(Curso item in Inscripcion.ofertaCuatrimestral)
                     {
-                        for (int a = 0; a < curso.Correlativas.Count; a++)  //Para cada correlativa de esa materia
+                        if(!item.Correlativas.Contains(listaMateriasAprobadas[i]))
                         {
-                            int contadorCorrelativa = 0;
-                            if (curso.Correlativas[a] == listaMateriasAprobadas[i]) //Si esa correlativa esta en la lista, lo meto.
-                            {
-                                contadorCorrelativa += 1;
-                            }
-                            if (contadorCorrelativa != curso.Correlativas.Count)
-                                listaMateriasParaRendir.Remove(listaMateriasAprobadas[i]);
+                            listaMateriasParaRendir.Remove(listaMateriasAprobadas[i]);
                         }
+
                     }
+                        
+                    
                 }               
+                
                 int contador = 0;
                 Console.Clear();
+               
                 foreach (var item in listaMateriasParaRendir)
                 {
                     foreach (var curso in Inscripcion.ofertaCuatrimestral)

@@ -8,119 +8,143 @@ namespace TP4
         static void Main(string[] args)
         {
             Inscripcion.levantarArchivoMaterias();
-            int registro = Inscripcion.ingreso();
-            Alumno alumnoIngresado = new Alumno(registro);
-            string archivoInscripcionesGeneradas = @"C:\Users\mateo\source\repos\CAI\TP4\TP4\Inscripciones Solicitadas.txt";           
+            
+            string archivoInscripcionesGeneradas = @"C:\Users\pc\source\repos\CAI\TP4\TP4\Inscripciones Solicitadas.txt";
+            Alumno alumnoIngresado;
+            bool MenuDeRegistro = false;
 
+            do
+            {
+                int registro = Inscripcion.ingreso();
+                alumnoIngresado = new Alumno(registro);
                 Console.WriteLine("Buenos días Sr/a" + "  " + alumnoIngresado.Apellido);
                 Console.WriteLine("Por favor, presione cualquier tecla para ingresar al menú principal.");
-
-                Console.ReadKey();
-
+                Console.ReadKey();                
                 bool menuPrincipal = false;
+
                 do
                 {
                     Console.Clear();
-                    int numeroMenuPrincipal = Inscripcion.mostrarMenu();
-                    bool salir = false;
-                    switch (numeroMenuPrincipal)
+                    Console.WriteLine("1. Ver oferta academica. \n2. Inscribite \n3. Solicitudes Enviadas \n8. Cambiar de Usuario " +
+                        " \n9. Salir");
+                    int numeroMenuPrincipal = Helper.ValidarNumero();
+                                        
+
+                    if (numeroMenuPrincipal > 0)
                     {
-                        case 1:
-                            {
-                                Curso.mostrarOferta();
-                                salir = true;
-                                break;
-                            }
-
-                        case 2:
-                            if (!alumnoIngresado.validacionAlumnoRegular())
-                            {
-                                Console.WriteLine("Usted es un alumno calificado como Libre. Dirijase por favor a Departamento de Alumnos");
-                                Console.WriteLine("Presione cualquier tecla para volver a Menú Principal");
-
-                                salir = true;
-                                Console.ReadKey();
-                            }
-
-
-                            else if (alumnoInscripto())
-                            {
-                                Console.WriteLine("Usted ya se inscribió");
-                                Console.WriteLine("Presione cualquier tecla para volver a Menú Principal");
-                                Console.ReadKey();
-                                salir = true;
-
-                            }
-
-                            else
-                            {
-                                alumnoIngresado.inscribir(); //valida 4 materias
-                                alumnoIngresado.mostrarMateriasDisponibles(); //muestra lo que podes rendir
-                                alumnoIngresado.enviarSolicitud(); //Tengo que validar, que ingrese lo que muestre la lista a rendir.
-                                Inscripcion.confirmarSolicitud(alumnoIngresado);
-                                alumnoIngresado.mostrarInscripcion();
-                                Grabar();
-                                salir = true;
-
-                            }
-                            break;
-
-                        case 3:
-                            string reflejo = "";
-                            bool validacion = false;
-                            int contador = 1;
-
-                            using (StreamReader reader = new StreamReader(archivoInscripcionesGeneradas))
-                            {
-                                while (!reader.EndOfStream)
+                        switch (numeroMenuPrincipal)
+                        {
+                            case 1:
                                 {
-                                    string linea = reader.ReadLine();
+                                    Curso.mostrarOferta();
+                                    
+                                    break;
+                                }
 
-                                    if (contador > 1)
-                                    {
+                            case 2:
+                                if (!alumnoIngresado.validacionAlumnoRegular())
+                                {
+                                    Console.WriteLine("Usted es un alumno calificado como Libre. Dirijase por favor a Departamento de Alumnos");
+                                    Console.WriteLine("Presione cualquier tecla para volver a Menú Principal");
 
-                                        var separacion = linea.Split(';');
-                                        string variable = separacion[2];
-                                        int variableParseada = int.Parse(variable);
-
-                                        if (variableParseada == alumnoIngresado.Registro)
-                                        {
-                                            validacion = true;
-                                            reflejo = linea;
-                                            break;
-                                        }
-
-                                    }
-                                    contador++;
+                                    
+                                    Console.ReadKey();
                                 }
 
 
-                            }
+                                else if (alumnoInscripto())
+                                {
+                                    Console.WriteLine("Usted ya se inscribió");
+                                    Console.WriteLine("Presione cualquier tecla para volver a Menú Principal");
+                                    Console.ReadKey();
+                                    
 
-                            if (!validacion)
-                            {
-                                Console.WriteLine("El alumno no se ha inscripto todavía");
-                                salir = true;
-                                Console.ReadKey();
-                            }
-                            else
-                            {
-                                Console.WriteLine("Nombre;Apellido;Registro;Curso1;Curso2;Curso3");
-                                Console.WriteLine(reflejo);
-                                Console.ReadKey();
-                                salir = true;
-                            }
+                                }
 
-                            break;
-                       
-                        case 9:
-                            Console.WriteLine("Nota: se ha generado un archivo Inscripciones Solicitadas.txt en la ruta local el cual contiene información de todas las incripciones.");
-                            salir = true;
-                            menuPrincipal = true;
-                            break;
-                    } while (!salir) ;
-                } while (!menuPrincipal);
-            
+                                else
+                                {
+                                    alumnoIngresado.inscribir(); //valida 4 materias
+                                    alumnoIngresado.mostrarMateriasDisponibles(); //muestra lo que podes rendir
+                                    alumnoIngresado.enviarSolicitud(); //Tengo que validar, que ingrese lo que muestre la lista a rendir.
+                                    Inscripcion.confirmarSolicitud(alumnoIngresado);
+                                    alumnoIngresado.mostrarInscripcion();
+                                    Grabar();
+                                    
+
+                                }
+                                break;
+
+                            case 3:
+                                string reflejo = "";
+                                bool validacion = false;
+                                int contador = 1;
+
+                                using (StreamReader reader = new StreamReader(archivoInscripcionesGeneradas))
+                                {
+                                    while (!reader.EndOfStream)
+                                    {
+                                        string linea = reader.ReadLine();
+
+                                        if (contador > 1)
+                                        {
+
+                                            var separacion = linea.Split(';');
+                                            string variable = separacion[2];
+                                            int variableParseada = int.Parse(variable);
+
+                                            if (variableParseada == alumnoIngresado.Registro)
+                                            {
+                                                validacion = true;
+                                                reflejo = linea;
+                                                break;
+                                            }
+
+                                        }
+                                        contador++;
+                                    }
+
+
+                                }
+
+                                if (!validacion)
+                                {
+                                    Console.WriteLine("El alumno no se ha inscripto todavía");
+                                    
+                                    Console.ReadKey();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Nombre;Apellido;Registro;Curso1;Curso2;Curso3");
+                                    Console.WriteLine(reflejo);
+                                    Console.ReadKey();
+                                    
+                                }
+
+                                break;
+
+                            case 8:
+                                Console.WriteLine("Usted cambiará de usuario");
+                                menuPrincipal = true;
+                                break;
+                            case 9:
+                                Console.WriteLine("Nota: se ha generado un archivo Inscripciones Solicitadas.txt en la ruta local el cual contiene información de todas las incripciones.");
+                                
+                                MenuDeRegistro = true;
+                                menuPrincipal = true;
+                                Console.ReadKey();
+                                break;
+
+                            default:
+                                {
+                                    Console.WriteLine("Ingrese una opción valida");
+                                    break;
+                                }
+
+                        } 
+                    }
+                } while (!menuPrincipal) ;
+                
+            } while (!MenuDeRegistro);
 
             void Grabar() // la solicitud de inscripción en un .txt
                                         // donde se encontrarán todas las solicitudes

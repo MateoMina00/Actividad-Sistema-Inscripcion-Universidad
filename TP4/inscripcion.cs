@@ -7,7 +7,7 @@ namespace TP4
 {
     static class Inscripcion
     {
-        const string nombreArchivoMaterias = @"C:\Users\mateo\source\repos\CAI\TP4\TP4\Materias.txt";
+        const string nombreArchivoMaterias = @"C:\Users\pc\source\repos\CAI\TP4\TP4\Materias.txt";
         public static List<Curso> ofertaCuatrimestral;
         public static List<List<int>> registroDeSolicitudesEnviadas;
         public static int ingreso()
@@ -35,12 +35,7 @@ namespace TP4
             } while (!cicloRegistro);
             return registro;
         } 
-        public static int mostrarMenu() //Ojo que si ingresar un numero incorrecto, rompe.
-        {
-            Console.WriteLine("1. Ver oferta academica. \n2. Inscribite \n3. Solicitudes Enviadas  \n9. Salir");
-            int opcion = Helper.validarNroMenu();
-            return opcion;
-        }
+       
         public static void confirmarSolicitud(Alumno alumno)
         {            
             registroDeSolicitudesEnviadas.Add(alumno.listaCursosSolicitados);
