@@ -141,7 +141,8 @@ namespace TP4
                             int cantidadCorrelativas = Inscripcion.ofertaCuatrimestral[i].Correlativas.Count;
                             foreach (int codigoDeCorrelativa in Inscripcion.ofertaCuatrimestral[i].Correlativas) //recorro la correlativa de cada materia
                             {                                
-                                foreach (int codigoAprobada in listaMateriasAprobadas)
+                                foreach (int codigoAprobada in listaMateriasAprobadas) //recorro todas las materias aprobadas, si coincide
+                                                                                        //con correlativa, sumo contador
                                 {
                                     if (codigoAprobada == codigoDeCorrelativa)
                                         contador += 1;
@@ -155,9 +156,9 @@ namespace TP4
                         
                     }
                 }
-                if (listaMateriasParaRendirConCorrelativa.Count == 0)
+                if (listaMateriasParaRendirConCorrelativa.Count == 0) //Si la lista queda vacia, no tiene materias para rendir
                     Console.WriteLine("El alumno no tiene materias disponibles para rendir");
-                else
+                else //Si no esta vacia, muestro las materias que puede cursar
                 {
                     foreach (var item in listaMateriasParaRendirConCorrelativa)
                     {
@@ -174,7 +175,7 @@ namespace TP4
             }
             else
             {
-                foreach (int codigoMateriaAprobada in listaMateriasAprobadas)
+                foreach (int codigoMateriaAprobada in listaMateriasAprobadas) //Muestro las materias que puede cursar (sin correlativas)
                 {
                     foreach (var CodigoMateriaOfrecida in Inscripcion.ofertaCuatrimestral)
                     {
