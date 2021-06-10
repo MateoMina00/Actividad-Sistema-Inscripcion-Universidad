@@ -7,7 +7,7 @@ namespace TP4
 {
     static class Inscripcion
     {
-        const string nombreArchivoMaterias = @"C:\Users\pc\source\repos\CAI\TP4\TP4\Materias.txt";
+        const string nombreArchivoMaterias = @"C:\Users\mateo\source\repos\CAI\TP4\TP4\Materias.txt";
         public static List<Curso> ofertaCuatrimestral;
         public static List<List<int>> registroDeSolicitudesEnviadas;
         public static int ingreso()
