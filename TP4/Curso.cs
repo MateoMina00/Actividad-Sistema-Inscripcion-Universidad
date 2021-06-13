@@ -74,7 +74,7 @@ namespace TP4
             var arrayCorrelativas = lineaCorrelativas.Split('-'); //array asd-asd-asd
             for (int i = 0; i < arrayCorrelativas.Length; i++) //recorro el array, por cada dato dentro de larray,
             {
-                if (!int.TryParse(arrayCorrelativas[i], out int prueba))  //agarro y lo parseo a un int. Ese int, lo agrego a
+                if (int.TryParse(arrayCorrelativas[i], out int prueba))  //agarro y lo parseo a un int. Ese int, lo agrego a
                 {                                                           //la lista de correlativas por cada materia.  
                     listaDeCorrelativas.Add(prueba);
                 }

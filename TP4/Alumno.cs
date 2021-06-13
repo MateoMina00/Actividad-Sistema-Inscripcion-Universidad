@@ -17,6 +17,7 @@ namespace TP4
         bool ultimasCuatroMaterias;//Si es true, no necesita validar correlativas.
         List<int> listaMateriasAprobadas;
         List<int> listaMateriasParaRendir = new List<int>();
+        List<int> listaMateriasParaRendirConCorrelativa = new List<int>();
         public List<int> listaCursosSolicitados = new List<int>();
 
         //Propiedades
@@ -112,38 +113,70 @@ namespace TP4
                 {
                   foreach(Curso item in Inscripcion.ofertaCuatrimestral)
                     {
-                        if(!item.Correlativas.Contains(listaMateriasAprobadas[i]))
+                        if (item.Correlativas.Contains(listaMateriasAprobadas[i])) //Si lista de correlativas del item contiene listaMateriasAprobadas[i]
                         {
                             listaMateriasParaRendir.Remove(listaMateriasAprobadas[i]);
                         }
 
                     }
-                        
-                    
-                }               
-                
+
+
+                }
+
                 int contador = 0;
                 Console.Clear();
-               
-                foreach (var item in listaMateriasParaRendir)
+                //A partir de aca, tengo la lista de las materias que puedo rendir, pero me falta las correlativas.
+                foreach (int codigoDeMateria in listaMateriasAprobadas)
                 {
-                    foreach (var curso in Inscripcion.ofertaCuatrimestral)
+                    
+                    for (int i = 0; i < Inscripcion.ofertaCuatrimestral.Count; i++)
                     {
-                        
-                        if(item == curso.NumeroDeMateria)
+                        if (Inscripcion.ofertaCuatrimestral[i].Correlativas.Count == 0) //si no tiene correlativas, lo agrego a la lista
                         {
-                            contador += 1;
-                            Console.WriteLine($"\nCurso: {curso.NumerodeCurso} - Nro. Materia:{curso.NumeroDeMateria}- {curso.NombreDeMateria} - {curso.Docente} - {curso.HorarioDeClase} - {curso.Sede}");
+                            if (!listaMateriasParaRendirConCorrelativa.Contains(Inscripcion.ofertaCuatrimestral[i].NumeroDeMateria))
+                                listaMateriasParaRendirConCorrelativa.Add(Inscripcion.ofertaCuatrimestral[i].NumeroDeMateria);
+                        }
+                        if (Inscripcion.ofertaCuatrimestral[i].Correlativas.Contains(codigoDeMateria)) //si tiene correlativa aprobada entro al if
+                        {
+                            contador = 0;
+                            int cantidadCorrelativas = Inscripcion.ofertaCuatrimestral[i].Correlativas.Count;
+                            foreach (int codigoDeCorrelativa in Inscripcion.ofertaCuatrimestral[i].Correlativas) //recorro la correlativa de cada materia
+                            {                                
+                                foreach (int codigoAprobada in listaMateriasAprobadas) //recorro todas las materias aprobadas, si coincide
+                                                                                        //con correlativa, sumo contador
+                                {
+                                    if (codigoAprobada == codigoDeCorrelativa)
+                                        contador += 1;
+                                }
+                            }
+                            if (contador == cantidadCorrelativas) //Si el contador es igual a la cantidad de correlativa, lo agrego
+                                if (!listaMateriasParaRendirConCorrelativa.Contains(Inscripcion.ofertaCuatrimestral[i].NumeroDeMateria))
+                                    listaMateriasParaRendirConCorrelativa.Add(Inscripcion.ofertaCuatrimestral[i].NumeroDeMateria);
+
+                        }
+                        
+                    }
+                }
+                if (listaMateriasParaRendirConCorrelativa.Count == 0) //Si la lista queda vacia, no tiene materias para rendir
+                    Console.WriteLine("El alumno no tiene materias disponibles para rendir");
+                else //Si no esta vacia, muestro las materias que puede cursar
+                {
+                    foreach (var item in listaMateriasParaRendirConCorrelativa)
+                    {
+                        foreach (var curso in Inscripcion.ofertaCuatrimestral)
+                        {
+                            if (item == curso.NumeroDeMateria)
+                            {
+                                Console.WriteLine($"\nCurso: {curso.NumerodeCurso} - Nro. Materia:{curso.NumeroDeMateria}- {curso.NombreDeMateria} - {curso.Docente} - {curso.HorarioDeClase} - {curso.Sede}");
+                            }
                         }
                     }
                 }
-                if (contador == 0)
-                    Console.WriteLine("El alumno no tiene cursos disponibles para inscribirse.");
-                
+
             }
             else
             {
-                foreach (int codigoMateriaAprobada in listaMateriasAprobadas)
+                foreach (int codigoMateriaAprobada in listaMateriasAprobadas) //Muestro las materias que puede cursar (sin correlativas)
                 {
                     foreach (var CodigoMateriaOfrecida in Inscripcion.ofertaCuatrimestral)
                     {
