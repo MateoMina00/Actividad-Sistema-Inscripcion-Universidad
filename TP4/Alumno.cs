@@ -107,6 +107,7 @@ namespace TP4
                     }
                 }
 
+                
                 for (int i = 0; i < listaMateriasAprobadas.Count; i++)
                 {
                   foreach(Curso item in Inscripcion.ofertaCuatrimestral)
