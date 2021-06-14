@@ -1,2 +1,0 @@
-Nombre;Apellido;Registro;Curso1;Curso2;Curso3
-Ariel;Luna;884561;137;135;125;

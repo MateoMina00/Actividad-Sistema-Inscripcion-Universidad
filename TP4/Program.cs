@@ -9,7 +9,7 @@ namespace TP4
         {
             Inscripcion.levantarArchivoMaterias();
             
-            string archivoInscripcionesGeneradas = @"C:\Users\mateo\source\repos\CAI\TP4\TP4\Inscripciones Solicitadas.txt";
+            string archivoInscripcionesGeneradas = "Inscripciones Solicitadas.txt";
             Alumno alumnoIngresado;
             bool MenuDeRegistro = false;
 

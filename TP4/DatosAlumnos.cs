@@ -7,7 +7,7 @@ namespace TP4
 {
     static class DatosAlumnos
     {
-        const string rutaAlumnos = @"C:\Users\mateo\source\repos\CAI\TP4\TP4\AlumnosResguardo.csv"; //Archivo CSV de Alumnos.
+        const string rutaAlumnos = "AlumnosResguardo.csv"; //Archivo CSV de Alumnos.
 
 
         public static bool validarAlumno(int registro) //Si existe el registro,. me devuelve true, sino false.
